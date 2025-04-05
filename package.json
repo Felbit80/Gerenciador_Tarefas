@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "gerenciador_tarefas",
+  "description": "Aplicação básica para gerenciar tarefas pessoais, trazendo funcionalidades como: criação, edição, exclusão e marcação de tarefas concluídas.",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
