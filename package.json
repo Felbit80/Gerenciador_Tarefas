@@ -9,7 +9,9 @@
   "description": "Aplicação básica para gerenciar tarefas pessoais, trazendo funcionalidades como: criação, edição, exclusão e marcação de tarefas concluídas.",
   "version": "1.0.0",
   "main": "server.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "prettier": "^3.5.3"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
