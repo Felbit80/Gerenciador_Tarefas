@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+:root {
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h5.footer-text {
+  color: gray;
+}
+
+a.link-github {
+  color: white;
+  transition: 0.25s;
+}
+a.link-github:hover {
+  color: lightgreen;
+}

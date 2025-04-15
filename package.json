@@ -1,6 +1,9 @@
 {
   "dependencies": {
-    "express": "^5.1.0"
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "scripts": {
     "start": "node server.js"
@@ -10,6 +13,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "devDependencies": {
+    "nodemon": "^3.1.9",
     "prettier": "^3.5.3"
   },
   "keywords": [],
