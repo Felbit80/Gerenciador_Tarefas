@@ -1,12 +1,15 @@
 @charset "UTF-8";
 
-:root {
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+h1.titulo {
+  font-family: "JetBrains Mono";
 }
 
 h5.footer-text {
@@ -16,7 +19,19 @@ h5.footer-text {
 a.link-github {
   color: white;
   transition: 0.25s;
+  font-family: "JetBrains Mono";
 }
 a.link-github:hover {
   color: lightgreen;
+}
+
+button.createTask {
+  font: 400 normal 0px "JetBrains Mono", monospace;
+  border: none;
+  background-color: #212529;
+  transition: 0.25s;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+button.createTask:hover {
+  background-color: #0051ff;
 }

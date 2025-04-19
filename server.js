@@ -1,8 +1,14 @@
 const express = require("express");
 const app = express();
+const path = require("path");
+const router = require("./app/routes/userRoutes");
 const port = 3000;
 
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(router);
 
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
