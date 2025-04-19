@@ -1,10 +1,20 @@
 const express = require("express");
 const app = express();
+<<<<<<< Updated upstream
 const path = require("path");
 const router = require("./app/routes/userRoutes");
 const port = 3000;
 
 app.use(express.static(path.join(__dirname, "public")));
+=======
+const userRoutes = require("./app/routes/userRoutes");
+const bodyParser = require("body-parser");
+const port = 3000;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(userRoutes);
+>>>>>>> Stashed changes
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
