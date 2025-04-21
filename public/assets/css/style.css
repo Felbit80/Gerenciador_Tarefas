@@ -6,7 +6,11 @@
   box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Anta&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+:root {
+  --bs-accordion-btn-icon-transform: rotate(0deg) !important;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Anta&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 
 h1.titulo {
   font-family: "JetBrains Mono";
@@ -26,12 +30,65 @@ a.link-github:hover {
 }
 
 button.createTask {
-  font: 400 normal 0px "JetBrains Mono", monospace;
+  font:
+    400 normal 0px "JetBrains Mono",
+    monospace;
   border: none;
-  background-color: #212529;
+  background-color: #25292c;
   transition: 0.25s;
   font-size: clamp(1rem, 2.5vw, 1.5rem);
 }
 button.createTask:hover {
   background-color: #0051ff;
+}
+
+main.telaCreateTask {
+  background-color: #212529;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+}
+
+div.formTask {
+  background-color: #2b2f33;
+  max-width: 600px;
+  min-width: 300px;
+  min-height: 600px;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+button.btn {
+  transition: 0.25s;
+  font-size: 25px;
+}
+
+label.form-label {
+  font-size: 22px;
+}
+
+div.tarefa-item {
+  width: 75vw;
+  margin: 10px 0;
+}
+
+p.tarefa-item-description {
+  background-color: #2b2f33;
+  border-radius: 10px;
+}
+
+p.tarefa-item-p {
+  padding: 5px 10px;
+  margin: 10px 0;
+}
+
+div.accordion-body {
+  padding: 0 10px !important;
+}
+
+.accordion-button:not(.collapsed) {
+  color: var(--bs-accordion-btn-color) !important;
+  background-color: var(--bs-accordion-btn-bg) !important;
+  box-shadow: none !important;
 }
