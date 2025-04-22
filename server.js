@@ -8,6 +8,7 @@ app.set("views", path.join(__dirname, "app/views"));
 
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const userRoutes = require("./app/routes/userRoutes");

@@ -92,3 +92,12 @@ div.accordion-body {
   background-color: var(--bs-accordion-btn-bg) !important;
   box-shadow: none !important;
 }
+
+p.atrasada {
+  background-color: rgba(255, 0, 0, 0.193);
+  border-radius: 10px;
+}
+
+button.accordion-button {
+  font-size: 20px;
+}
