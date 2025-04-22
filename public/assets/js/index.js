@@ -61,7 +61,7 @@ async function deleteTask(taskId) {
 
     if (response.ok) {
       console.log(`Tarefa com ID ${taskId} deletada com sucesso.`);
-      fetchTasks(); // Atualiza a lista de tarefas após a exclusão
+      fetchTasks();
     } else {
       console.error(`Erro ao deletar a tarefa com ID ${taskId}.`);
     }

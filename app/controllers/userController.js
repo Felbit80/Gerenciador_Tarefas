@@ -2,10 +2,8 @@ const { Task, tasks } = require("../models/taskModel");
 
 exports.createTask = (req, res) => {
   const { title, description, deadline } = req.body;
-  const id = tasks.length + 1;
-  const status = "Pendente";
 
-  const newTask = new Task(title, description, deadline, status);
+  const newTask = new Task(title, description, deadline);
   tasks.push(newTask);
 
   res.redirect("/");
