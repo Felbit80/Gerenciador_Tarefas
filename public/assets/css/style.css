@@ -101,3 +101,25 @@ p.atrasada {
 button.accordion-button {
   font-size: 20px;
 }
+
+img.img-delete {
+  width: 25px;
+  height: 25px;
+  transition: 0.25s;
+}
+
+button.btn-delete {
+  background-color: #212529;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  transition: 0.25s;
+} 
+button.btn-delete:hover {
+  background-color: rgba(255, 0, 0, 0.193);
+  padding: 7.5px;
+  img.img-delete {
+    width: 27.5px;
+    height: 27.5px;
+  }
+}

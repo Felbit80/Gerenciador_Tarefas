@@ -6,10 +6,7 @@ const userController = require("../controllers/userController");
 
 router.get("/", userController.getTasks);
 
-router.post("/", (req, res) => {
-  userController.createTask(req, res);
-  res.redirect("/");
-});
+router.post("/", userController.createTask);
 
 router.get("/api/tasks", (req, res) => {
   res.json(tasks);
@@ -18,5 +15,7 @@ router.get("/api/tasks", (req, res) => {
 router.get("/create-task", (req, res) => {
   res.render("createTask");
 });
+
+router.delete("/api/tasks/:id", userController.deleteTask);
 
 module.exports = router;

@@ -32,11 +32,14 @@ async function fetchTasks() {
             </h1>
             <div class="accordion-collapse collapse" id="tarefa-${tarefa.id}" aria-labelledby="heading-${tarefa.id}" data-bs-parent="#tarefas">
               <div class="accordion-body">
-                  <p class="tarefa-item-description tarefa-item-p">${tarefa.description}</p>
-                  <p class="tarefa-item-p ${currentDate > deadline ? "atrasada" : ""}">Prazo: ${formattedDate}</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <p class="tarefa-item-p">Status: ${tarefa.status}</p>
-                  </div>  
+                <p class="tarefa-item-description tarefa-item-p">${tarefa.description}</p>
+                <p class="tarefa-item-p ${currentDate > deadline ? "atrasada" : ""}">Prazo: ${formattedDate}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <p class="tarefa-item-p">Status: ${tarefa.status}</p>
+                  <button class="btn-delete" onclick="deleteTask(${tarefa.id})">
+                    <img src="/assets/imgs/deleteIcon.png" class="img-delete">
+                  </button>
+                </div>  
               </div>
             </div>
           </div>
@@ -50,9 +53,28 @@ async function fetchTasks() {
   }
 }
 
+async function deleteTask(taskId) {
+  try {
+    const response = await fetch(`/api/tasks/${taskId}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      console.log(`Tarefa com ID ${taskId} deletada com sucesso.`);
+      fetchTasks(); // Atualiza a lista de tarefas após a exclusão
+    } else {
+      console.error(`Erro ao deletar a tarefa com ID ${taskId}.`);
+    }
+  } catch (error) {
+    console.error("Erro ao deletar a tarefa:", error);
+  }
+}
+
 fetchTasks();
 
 const createTask = document.querySelector(".createTask");
 createTask.addEventListener("click", () => {
   window.location.href = "http://localhost:3000/create-task";
 });
+
+window.deleteTask = deleteTask;
