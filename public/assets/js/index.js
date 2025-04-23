@@ -23,22 +23,30 @@ async function fetchTasks() {
       const currentDate = new Date();
       const formattedDate = `${String(deadline.getDate() + 1).padStart(2, "0")}/${String(deadline.getMonth() + 1).padStart(2, "0")}/${String(deadline.getFullYear()).padStart(4, "0")}`;
 
+      const isAtrasada = tarefa.status === "Atrasada";
+      const isConcluida = tarefa.status === "Concluída";
+
       tarefaItem.innerHTML = `
           <div class="accordion-item">
             <h1 class="accordion-header" id="heading-${tarefa.id}">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#tarefa-${tarefa.id}" aria-expanded="true" aria-controls="tarefa-${tarefa.id}">
+              <button class="accordion-button item-${tarefa.id} ${isConcluida ? "completed" : isAtrasada ? "atrasada" : ""}" type="button" data-bs-toggle="collapse" data-bs-target="#tarefa-${tarefa.id}" aria-expanded="true" aria-controls="tarefa-${tarefa.id}">
                 ${tarefa.title}
               </button>
             </h1>
             <div class="accordion-collapse collapse" id="tarefa-${tarefa.id}" aria-labelledby="heading-${tarefa.id}" data-bs-parent="#tarefas">
               <div class="accordion-body">
                 <p class="tarefa-item-description tarefa-item-p">${tarefa.description}</p>
-                <p class="tarefa-item-p ${currentDate > deadline ? "atrasada" : ""}">Prazo: ${formattedDate}</p>
+                <p class="tarefa-item-p ${isAtrasada ? "atrasada" : ""}" id="prazo-${tarefa.id}">Prazo: ${formattedDate}</p>
                 <div class="d-flex justify-content-between align-items-center">
-                  <p class="tarefa-item-p">Status: ${tarefa.status}</p>
-                  <button class="btn-delete" onclick="deleteTask(${tarefa.id})">
-                    <img src="/assets/imgs/deleteIcon.png" class="img-delete">
-                  </button>
+                  <p class="tarefa-item-p ${isConcluida ? "status-concluida" : isAtrasada ? "status-atrasada" : ""}" id="status-${tarefa.id}">Status: ${tarefa.status}</p>
+                  <div>
+                    <button class="${isConcluida ? "btn-desconcluir" : "btn-concluir"}" onclick="completeTask(${tarefa.id})">
+                      <img src="/assets/imgs/${isConcluida ? "descompleteIcon.png" : "completeIcon.png"}" class="img-complete">
+                    </button>
+                    <button class="btn-delete" onclick="deleteTask(${tarefa.id})">
+                      <img src="/assets/imgs/deleteIcon.png" class="img-delete">
+                    </button>
+                  </div>
                 </div>  
               </div>
             </div>
@@ -62,11 +70,72 @@ async function deleteTask(taskId) {
     if (response.ok) {
       console.log(`Tarefa com ID ${taskId} deletada com sucesso.`);
       fetchTasks();
+      window.location.reload();
     } else {
       console.error(`Erro ao deletar a tarefa com ID ${taskId}.`);
     }
   } catch (error) {
     console.error("Erro ao deletar a tarefa:", error);
+  }
+}
+
+async function completeTask(taskId) {
+  try {
+    const response = await fetch(`/api/tasks`);
+    let tasks = await response.json();
+    const task = tasks.find((task) => task.id === taskId);
+
+    if (!task) return;
+
+    const deadline = new Date(task.deadline);
+    const now = new Date();
+    const isAtrasada = now > deadline && task.status !== "Concluída";
+    const novoStatus = task.status === "Concluída" ? "Pendente" : "Concluída";
+    const statusFinal =
+      isAtrasada && novoStatus !== "Concluída" ? "Atrasada" : novoStatus;
+
+    const responseUpdate = await fetch(`/api/tasks/${taskId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: statusFinal }),
+    });
+
+    if (responseUpdate.ok) {
+      // Atualiza visualmente a tarefa após confirmação do servidor
+      const tarefaItem = document.querySelector(`.item-${taskId}`);
+      const imagem = document.querySelector(`#tarefa-${taskId} .img-complete`);
+      const prazo = document.querySelector(`#prazo-${taskId}`);
+      const status = document.querySelector(`#status-${taskId}`);
+
+      if (novoStatus === "Concluída") {
+        tarefaItem.classList.add("completed");
+        tarefaItem.classList.remove("atrasada");
+        imagem.src = "/assets/imgs/descompleteIcon.png";
+        imagem.parentElement.classList.remove("btn-concluir");
+        imagem.parentElement.classList.add("btn-desconcluir");
+        status.innerHTML = "Status: Concluída";
+        prazo.classList.remove("atrasada");
+        status.classList.add("status-concluida");
+      } else {
+        tarefaItem.classList.remove("completed");
+        tarefaItem.classList.add("atrasada");
+        imagem.src = "/assets/imgs/completeIcon.png";
+        imagem.parentElement.classList.add("btn-concluir");
+        imagem.parentElement.classList.remove("btn-desconcluir");
+        status.innerHTML = "Status: Pendente";
+        prazo.classList.add("atrasada");
+        status.classList.remove("status-concluida");
+      }
+      fetchTasks(); // Recarrega as tarefas para garantir que o estado esteja atualizado
+      window.location.reload(); // Recarrega a página para garantir que o estado esteja atualizado
+      console.log(`Tarefa ${taskId} atualizada para ${novoStatus}`);
+    } else {
+      console.error("Erro ao atualizar tarefa");
+    }
+  } catch (error) {
+    console.error("Erro no completeTask:", error);
   }
 }
 
@@ -77,4 +146,5 @@ createTask.addEventListener("click", () => {
   window.location.href = "http://localhost:3000/create-task";
 });
 
+window.completeTask = completeTask;
 window.deleteTask = deleteTask;

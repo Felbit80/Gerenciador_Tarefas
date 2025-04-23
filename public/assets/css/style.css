@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Anta&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 
 * {
   margin: 0;
@@ -9,8 +10,6 @@
 :root {
   --bs-accordion-btn-icon-transform: rotate(0deg) !important;
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Anta&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 
 h1.titulo {
   font-family: "JetBrains Mono";
@@ -108,13 +107,49 @@ img.img-delete {
   transition: 0.25s;
 }
 
+button.btn-concluir {
+  background-color: #212529;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  transition: 0.25s;
+}
+button.btn-concluir:hover {
+  background-color: rgba(36, 151, 18, 0.208);
+  padding: 7.5px;
+  img.img-complete {
+    width: 27.5px;
+    height: 27.5px;
+  }
+}
+button.btn-desconcluir {
+  background-color: #212529;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  transition: 0.25s;
+}
+button.btn-desconcluir:hover {
+  background-color: rgba(187, 132, 12, 0.28);
+  padding: 7.5px;
+  img.img-complete {
+    width: 27.5px;
+    height: 27.5px;
+  }
+}
+img.img-complete {
+  width: 25px;
+  height: 25px;
+  transition: 0.25s;
+}
+
 button.btn-delete {
   background-color: #212529;
   border-radius: 10px;
   border: none;
   padding: 10px;
   transition: 0.25s;
-} 
+}
 button.btn-delete:hover {
   background-color: rgba(255, 0, 0, 0.193);
   padding: 7.5px;
@@ -122,4 +157,44 @@ button.btn-delete:hover {
     width: 27.5px;
     height: 27.5px;
   }
+}
+img.img-delete {
+  width: 25px;
+  height: 25px;
+  transition: 0.25s;
+}
+
+button.btn-delete {
+  background-color: #212529;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  transition: 0.25s;
+}
+button.btn-delete:hover {
+  background-color: rgba(255, 0, 0, 0.193);
+  padding: 7.5px;
+  img.img-delete {
+    width: 27.5px;
+    height: 27.5px;
+  }
+}
+
+button.completed {
+  background-color: rgba(36, 151, 18, 0.208) !important;
+}
+
+p.status-concluida {
+  background-color: rgba(36, 151, 18, 0.208);
+  border-radius: 10px;
+}
+
+.atrasada {
+  color: white;
+  background-color: rgba(255, 0, 0, 0.193) !important;
+}
+
+.status-atrasada {
+  background-color: rgba(255, 0, 0, 0.193);
+  border-radius: 10px;
 }

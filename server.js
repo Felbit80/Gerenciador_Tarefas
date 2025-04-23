@@ -13,8 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 const userRoutes = require("./app/routes/userRoutes");
 app.use(userRoutes);
 
-const morgan = require('morgan');
-app.use(morgan('dev'));
+const morgan = require("morgan");
+app.use(morgan("dev"));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
