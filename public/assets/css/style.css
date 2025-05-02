@@ -41,6 +41,19 @@ button.createTask:hover {
   background-color: #0051ff;
 }
 
+a.createTask {
+  font:
+    400 normal 0px "JetBrains Mono",
+    monospace;
+  border: none;
+  background-color: #25292c;
+  transition: 0.25s;
+  font-size: clamp(0.8rem, 2vw, 1.3rem);
+}
+a.createTask:hover {
+  background-color: #3c4145;
+}
+
 main.telaCreateTask {
   background-color: #212529;
   height: 100vh;
@@ -51,7 +64,7 @@ main.telaCreateTask {
 div.formTask {
   background-color: #2b2f33;
   max-width: 600px;
-  min-width: 300px;
+  min-width: 50vw;
   min-height: 600px;
   padding: 20px;
   border-radius: 10px;
@@ -101,12 +114,6 @@ button.accordion-button {
   font-size: 20px;
 }
 
-img.img-delete {
-  width: 25px;
-  height: 25px;
-  transition: 0.25s;
-}
-
 button.btn-concluir {
   background-color: #212529;
   border-radius: 10px;
@@ -143,21 +150,6 @@ img.img-complete {
   transition: 0.25s;
 }
 
-button.btn-delete {
-  background-color: #212529;
-  border-radius: 10px;
-  border: none;
-  padding: 10px;
-  transition: 0.25s;
-}
-button.btn-delete:hover {
-  background-color: rgba(255, 0, 0, 0.193);
-  padding: 7.5px;
-  img.img-delete {
-    width: 27.5px;
-    height: 27.5px;
-  }
-}
 img.img-delete {
   width: 25px;
   height: 25px;
@@ -180,8 +172,26 @@ button.btn-delete:hover {
   }
 }
 
-button.completed {
-  background-color: rgba(36, 151, 18, 0.208) !important;
+img.img-edit {
+  width: 25px;
+  height: 25px;
+  transition: 0.25s;
+}
+
+button.btn-edit {
+  background-color: #212529;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  transition: 0.25s;
+}
+button.btn-edit:hover {
+  background-color: rgba(0, 72, 255, 0.193);
+  padding: 7.5px;
+  img.img-delete {
+    width: 27.5px;
+    height: 27.5px;
+  }
 }
 
 p.status-concluida {
@@ -197,4 +207,71 @@ p.status-concluida {
 .status-atrasada {
   background-color: rgba(255, 0, 0, 0.193);
   border-radius: 10px;
+}
+
+.accordion-button.completed {
+  background-color: rgba(36, 151, 18, 0.208) !important;
+  color: white;
+}
+
+.accordion-button.atrasada {
+  background-color: rgba(255, 0, 0, 0.193) !important;
+  color: white;
+}
+
+.filtro-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-filtro {
+  background-color: #212529;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  transition: 0.3s;
+}
+.btn-filtro:hover {
+  background-color: #3c4145;
+}
+
+.img-filtro {
+  width: 25px;
+  height: 25px;
+}
+
+.filtro-container {
+  position: relative; /* necessário para o select absoluto funcionar */
+  display: inline-block; /* impede que quebre o layout */
+}
+
+.filtro-select {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  z-index: 1000;
+  background-color: #2b2f33;
+  color: white;
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-family: "JetBrains Mono";
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  min-width: 150px;
+  max-width: 90vw;
+  box-sizing: border-box;
+  left: 50%;
+  transform: translateX(-50%);
+  right: 0;
+}
+
+.filtro-select.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+body {
+  overflow-x: hidden;
 }

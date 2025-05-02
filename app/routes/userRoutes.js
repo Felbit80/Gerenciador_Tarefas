@@ -18,19 +18,18 @@ router.get("/create-task", (req, res) => {
 
 router.delete("/api/tasks/:id", userController.deleteTask);
 
-router.put("/api/tasks/:id", (req, res) => {
-  const taskId = parseInt(req.params.id); // Obtém o ID da tarefa a ser atualizada
-  const { status } = req.body; // Obtém o novo status do corpo da requisição
+router.put("/api/tasks/:id", userController.completeTask);
 
+router.post("/edit-task/:id", userController.editTask);
+
+router.get("/edit-task/:id", (req, res) => {
+  const taskId = parseInt(req.params.id);
   const task = tasks.find((task) => task.id === taskId);
 
   if (task) {
-    task.status = status; // Atualiza o status da tarefa
-    console.log(`Tarefa com ID ${taskId} atualizada para o status: ${status}`);
-    res.status(200).json({ message: "Tarefa atualizada com sucesso", task });
+    res.render("editTask", { task, taskId });
   } else {
-    console.log(`Tarefa com ID ${taskId} não encontrada.`);
-    res.status(404).json({ error: "Tarefa não encontrada" });
+    res.status(404).send("Tarefa não encontrada");
   }
 });
 

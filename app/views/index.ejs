@@ -31,12 +31,23 @@
         </div>
       </div>
       <div class="row">
-        <div class="col d-flex justify-content-center align-items-center">
+        <div class="col flex-column d-flex justify-content-center align-items-center flex-sm-row">
           <button class="px-2 py-3 m-2 w-75 rounded-5 createTask">
             Criar nova Tarefa
           </button>
+          <div class="filtro-container">
+          <button id="toggleFiltro" class="btn-filtro">
+            <img src="/assets/imgs/filterIcon.png" class="img-filtro" alt="Filtro">
+          </button>
+          <select id="filtro-status" class="filtro-select hidden">
+            <option value="todas">Todas</option>
+            <option value="pendente">Pendentes</option>
+            <option value="atrasada">Atrasadas</option>
+            <option value="concluida">Concluídas</option>
+          </select>
         </div>
       </div>
+    </div>
       <div class="row">
         <div
           class="col d-flex flex-column align-items-center justify-content-center tarefas"

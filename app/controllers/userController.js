@@ -37,3 +37,37 @@ exports.deleteTask = (req, res) => {
     res.status(404).json({ error: "Tarefa não encontrada" });
   }
 };
+
+exports.completeTask = (req, res) => {
+  const taskId = parseInt(req.params.id); // Obtém o ID da tarefa a ser atualizada
+  const { status } = req.body; // Obtém o novo status do corpo da requisição
+
+  const task = tasks.find((task) => task.id === taskId);
+
+  if (task) {
+    task.status = status; // Atualiza o status da tarefa
+    console.log(`Tarefa com ID ${taskId} atualizada para o status: ${status}`);
+    res.status(200).json({ message: "Tarefa atualizada com sucesso", task });
+  } else {
+    console.log(`Tarefa com ID ${taskId} não encontrada.`);
+    res.status(404).json({ error: "Tarefa não encontrada" });
+  }
+};
+
+exports.editTask = (req, res) => {
+  const taskId = parseInt(req.body.id);
+  const { title, description, deadline } = req.body;
+
+  const task = tasks.find((task) => task.id === taskId);
+
+  if (task) {
+    task.title = title;
+    task.description = description;
+    task.deadline = deadline;
+    console.log(`Tarefa com ID ${taskId} editada com sucesso.`);
+    res.redirect("/");
+  } else {
+    console.log(`Tarefa com ID ${taskId} não encontrada para edição.`);
+    res.status(404).json({ error: "Tarefa não encontrada" });
+  }
+};

@@ -2,13 +2,10 @@
 <html lang="pt-br" data-bs-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gerenciador de Tarefas</title>
+    <title>Editar Tarefa</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
-      crossorigin="anonymous"
     />
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="shortcut icon" href="/assets/imgs/favicon.png" />
@@ -19,37 +16,40 @@
     >
       <div class="row">
         <div class="col formTask d-flex flex-column justify-content-around">
-          <h1 class="text-center">Crie uma nova tarefa</h1>
-          <form action="/" method="POST">
+          <h1 class="text-center mb-4">Editar Tarefa</h1>
+          <form action="/edit-task/<%= task.id %>" method="POST">
+            <input type="hidden" name="id" value="<%= task.id %>" />
             <div class="mb-3">
-              <label for="taskTitle" class="form-label">Título da Tarefa</label>
+              <label for="title" class="form-label">Título</label>
               <input
                 type="text"
                 class="form-control"
-                id="taskTitle"
+                id="title"
                 name="title"
-                placeholder="Digite o título da tarefa"
+                value="<%= task.title %>"
                 required
               />
             </div>
             <div class="mb-3">
-              <label for="taskDescription" class="form-label">Descrição</label>
+              <label for="description" class="form-label">Descrição</label>
               <textarea
                 class="form-control"
-                id="taskDescription"
+                id="description"
                 name="description"
                 rows="3"
-                placeholder="Digite a descrição da tarefa"
                 required
-              ></textarea>
+              >
+<%= task.description %></textarea
+              >
             </div>
             <div class="mb-3">
-              <label for="taskDeadline" class="form-label">Prazo</label>
+              <label for="deadline" class="form-label">Prazo</label>
               <input
                 type="date"
                 class="form-control"
-                id="taskDeadline"
+                id="deadline"
                 name="deadline"
+                value="<%= task.deadline.split('T')[0] %>"
                 required
               />
             </div>
@@ -57,17 +57,17 @@
               type="submit"
               class="btn btn-primary w-100 p-2 my-3 createTask"
             >
-              Criar Tarefa
+              Salvar
             </button>
+            <a
+            href="/"
+              class="btn btn-primary w-100 p-2 my-3 createTask"
+            >
+              Cancelar
+            </a>
           </form>
         </div>
       </div>
     </main>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-      crossorigin="anonymous"
-    ></script>
-    <script type="module" src="/assets/js/index.js"></script>
   </body>
 </html>
