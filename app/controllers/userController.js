@@ -69,7 +69,7 @@ exports.getTaskById = (req, res) => {
   const task = tasks.find((task) => task.id === taskId);
 
   if (task) {
-    res.status(200).json(task);
+    res.render("editTask", { task, taskId });
   } else {
     res.status(404).json({ error: "Tarefa não encontrada" });
   }
