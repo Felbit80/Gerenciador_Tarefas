@@ -5,6 +5,7 @@
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "morgan": "^1.10.0",
+    "swagger": "^0.7.5",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   },

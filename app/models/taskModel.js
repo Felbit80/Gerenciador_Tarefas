@@ -1,16 +1,16 @@
 class Task {
+  static latestId = 0;
+
   constructor(title, description, deadline, status = "Pendente") {
-    this.id = Task.incrementId();
+    this.id = Task.generateId();
     this.title = title;
     this.description = description;
     this.deadline = deadline;
     this.status = status;
   }
 
-  static incrementId() {
-    if (!this.latestId) this.latestId = 1;
-    else this.latestId++;
-    return this.latestId;
+  static generateId() {
+    return ++this.latestId;
   }
 }
 

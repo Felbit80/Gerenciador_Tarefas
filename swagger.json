@@ -1,0 +1,73 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Gerenciador de Tarefas API",
+      "description": "Documentação da API do Gerenciador de Tarefas"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": ["http"],
+    "paths": {
+      "/api/tasks": {
+        "get": {
+          "summary": "Obter todas as tarefas",
+          "responses": {
+            "200": {
+              "description": "Lista de tarefas"
+            }
+          }
+        },
+        "post": {
+          "summary": "Criar uma nova tarefa",
+          "responses": {
+            "201": {
+              "description": "Tarefa criada com sucesso"
+            }
+          }
+        }
+      },
+      "/api/tasks/{id}": {
+        "put": {
+          "summary": "Atualizar uma tarefa",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "ID da tarefa"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Tarefa atualizada com sucesso"
+            },
+            "404": {
+              "description": "Tarefa não encontrada"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Excluir uma tarefa",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "ID da tarefa"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Tarefa excluída com sucesso"
+            },
+            "404": {
+              "description": "Tarefa não encontrada"
+            }
+          }
+        }
+      }
+    }
+  }
